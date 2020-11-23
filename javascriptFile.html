@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Text Input Control</title>
+    <style>
+        th, td{
+            border: 1px solid gray;
+            width: 200px;
+            padding: 5px;
+        }
+        th{
+            background-color: lightgray;
+            
+        }
+        table{
+            border-collapse: collapse;
+        }
+        input{
+            padding: 10px;
+            font-size: 12pt;
+            border: 2px solid black;
+        }
+    </style>
+    <script>
+        //====================================================================
+        // Event Handler Zone
+        //====================================================================
+        function keyDown(){
+            if(event.keyCode === 13) { //Enter값이 입력되었으면
+                // input 태그에 입력된 내용을 p에 출력한다.
+                let input = document.getElementById("textInput");
+                // 입력된 단어를 테이블의 새 행을 만드는 함수에 전달한다.
+                appendRow(input.value);
+                input.value = ""; // input 
+            }
+        }
+        //====================================================================
+        //====================================================================
+        //function Zone
+        //====================================================================
+        // 테이블에 새 행을 만들고 매개변수로 받은 단어를 저장한다.
+        function appendRow(newWord){
+            let myTbody = document.getElementById("myTbody");
+            // 새로 추가할 행을 생성
+            let newRow = myTbody.insertRow(myTbody.rows.length);
+            // 새로 만든 행에 두 개의 새로운 셀을 생성한다.
+            let cell1 = newRow.insertCell(0);
+            let cell2 = newRow.insertCell(1);
+            // 새로 만들 셀에 필요한 내용을 저장한다.
+            cell1.innerHTML = newWord;
+            cell2.innerHTML = newWord.length;
+            
+        }
+        //====================================================================
+        window.onload = function() {
+            document.getElementById("textInput").addEventListener("keydown",keyDown);
+        }
+        //====================================================================
+    </script>
+</head>
+<body>
+    <h1>Text Input Control</h1>
+    <hr>
+    Input : <input id="textInput" size="30" \>
+    <hr>
+    <table>
+        <thead>
+            <th>단어</th>
+            <th>비고</th>
+        </thead>
+        <tbody id="myTbody">
+
+        </tbody>
+    </table>
+    <p></p>
+</body>
+</html>
