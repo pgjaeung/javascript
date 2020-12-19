@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="jquery-3.5.1.js"></script>
+    <script src="script.js"></script>
+    <title>자바 기말과제</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <script>     
+        $(document).ready(function(){
+            $("#ranbtn").click(function(){
+                var ranamount = Math.random() * 100000;
+                var rantest1 = Math.floor(ranamount/1000)*1000 + 1000;          // 난수 1000단위 절사
+                var ran = rantest1.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");        // 난수 자릿수 3마다 ,
+                $("#ran").val(ran+"원");
+            });
+            $('.key').click(function(){
+                var num = $(this).text();
+                $("#numBox").val($("#numBox").val() +num);
+                // 자동 하이픈 추가 및 끝문자부터 삭제 backspace
+                
+            });
+            $('.keyc').click(function(){
+                $("#numBox").val("");
+            });
+            $('.keyx').click(function(){
+                $("#numBox").val($("#numBox").val() - $("#numBox").val());
+                
+            });
+        });
+        // $(document).ready(function(){
+        //     $('#numBox').click(function(){
+        //         document.getElementById('numBox').val = '';
+
+        //         $('#keypad').Toggle('fast');
+        //         event.stopPropagation();
+        //     });
+
+        //     $('.key').click(function(){
+        //         var numBox = document.getElementById('numBox');
+        //         numBox.val = numBox.val + this.val;
+
+        //         event.stopPropagation();
+        //     });
+
+        //     $('.btn1').click(function(){
+        //         if(this.val == 'DEL'){
+        //             var numBox = document.getElementById('numBox');
+        //             if(numBox.val.length > 0){
+        //                 numBox.val = numBox.val.substring(0, numBox.val.length - 1);
+        //             }
+        //         }
+        //         event.stopPropagation();
+        //     });
+        // });
+
+    </script>
+
+    <label for="amount_L" style="text-align: center;">마일리지 적립시스템</label>
+    <div class="amount">
+        <span class="currency">\</span>
+        <input type="text" id="ran" placeholder="금액설정버튼 클릭!" readonly="true">
+        <button id="ranbtn">금액설정</button>
+    </div>
+    <!-- 여기서부터 휴대폰번호 및 키패드 -->
+    <div class="numbericInput">
+        <input type="text" id="numBox" placeholder="휴대폰 번호 입력!" readonly="true">
+        <table id="keypad">
+            <tr>
+                <td class="key" >1</td>
+                <td class="key" >2</td>
+                <td class="key" >3</td>
+            </tr>
+            <tr>
+                <td class="key" >4</td>
+                <td class="key" >5</td>
+                <td class="key" >6</td>
+            </tr>
+            <tr>
+                <td class="key" >7</td>
+                <td class="key" >8</td>
+                <td class="key" >9</td>
+            </tr>
+            <tr>
+                <td class="keyx">X</td>
+                <td class="key">0</td>
+                <td class="keyc">C</td>
+            </tr>
+        </table>
+    </div>
+    
+</body>
+</html>
