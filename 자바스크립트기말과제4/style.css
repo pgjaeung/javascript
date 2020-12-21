@@ -1,0 +1,212 @@
+
+body{
+    background-color: #f3f3f3;
+}
+label{
+    color: #666;
+    display: block;
+    margin-bottom: 10px;
+    font-size: 30px;
+    font-weight: bold;
+    letter-spacing: 0.05em;
+}
+.amount{
+    display: flex;
+    justify-content: flex-start;
+    margin-left: 40%;   /*div배치*/
+    margin-top: 40px;
+}
+.amount input{
+    max-width: 270px;
+    flex: 1 1 270px;
+}
+.amount .currency {
+    font-size: 30px;
+    padding:  0 10px 0 20px;
+    color: #999;
+    border: 2px solid #ccc;
+    border-right: 0;
+    line-height: 2.5;
+    border-radius: 7px 0 0 7px;
+    background: white;
+}
+#ran{
+    text-align: center;
+    font-size: 30px;
+    padding: 0;
+    border: 2px solid #ccc;
+    border-left: 0;
+    width: 100%;
+    color: #666;
+    border-radius: 0 7px 7px 0;
+    font-family: 'PT Sans','sans-serif';
+    font-weight: bold;
+    margin-right: 10px;
+}
+#ranbtn{
+    width: 100px;
+    height: 80px;
+    border: 2px solid #ccc;
+    border-radius: 7px 7px 7px 7px;
+    font-size: 20px;
+    color: gray;
+    font-weight: bold;
+    
+}
+/* ======================================== */
+#numBox{
+    font-size: 30px;
+    padding:  0 4px 0 0;
+    color: #666;
+    border: 2px solid #ccc;
+    line-height: 2.5;
+    border-radius: 0px 7px 7px 0px;
+    background: white;
+    font-weight: bold;
+    text-align: center;
+    cursor:text;
+    overflow:hidden;
+    margin-right: 10px;
+    font-family: 'PT Sans','sans-serif';
+    border-left: 0;
+    height: 80px;
+    width: 272px;
+    
+}
+.numbericInput{
+    display: flex;
+    justify-content: flex-start;
+    margin-left: 40%;   /*div배치*/
+    margin-top: 40px;
+}
+.numbericInput input{
+    max-width: 270px;
+    flex: 1 1 270px;
+}
+.numbericInput .telephone{
+    font-size: 30px;
+    padding:  0 0 0 20px;
+    color: #999;
+    border: 2px solid #ccc;
+    border-right: 0;
+    line-height: 2.5;
+    border-radius: 7px 0 0 7px;
+    background: white;
+    text-align: center;
+    height: 80px;
+}
+
+#keypad{
+    width:435px;
+    height:400px;
+    border: 3px solid #6f4f28;
+    border-radius: 7px 7px 7px 7px;
+    display:none;
+    margin-top: 100px;
+    position: absolute;
+    
+}
+.key{
+    border:2px solid #6f4f28;
+    border-radius: 10px 10px 10px 10px;
+    background-color:#f5deb3;
+    text-align:center;
+    font-weight:bold;
+    color:#6f4f28;
+    font-size: 60px;
+    cursor:pointer;
+}
+.keyx, .keyc{
+    border:2px solid #6f4f28;
+    border-radius: 10px 10px 10px 10px;
+    background-color: darksalmon;
+    text-align:center;
+    font-weight:bold;
+    color:lightgoldenrodyellow;
+    font-size: 60px;
+    cursor:pointer;
+}
+.key:hover{
+    background-color: darkkhaki;
+}
+.keyx:hover, .keyc:hover{
+    background-color: darkorange;
+}
+.key:active, .keyx:active, .keyc:active{
+    background-color: #f0e68c;
+}
+.btn1 .btn2{
+    border:solid 1px black;
+    text-align:center;
+    font-weight:bold;
+    color:black;
+    cursor:pointer;
+    background-color:DimGray;
+    width:33.3%;
+}
+
+.btn:hover{
+    background-color:DarkGray;
+}
+.btn:active{
+    background-color:LightGray;
+}
+#store{
+    width: 100px;
+    height: 84px;
+    border: 2px solid #ccc;
+    border-radius: 7px 7px 7px 7px;
+    font-size: 20px;
+    color: gray;
+    font-weight: bold;
+    
+    line-height: 2.5;
+    position: relative;   
+}
+#store:hover{
+    background-color: darkseagreen;
+    color: lightgreen;
+    border: 2px solid lightgreen;
+}
+#ranbtn:hover{
+    background-color: mediumblue;
+    color:lightskyblue;
+    border: 2px solid lightskyblue;
+}
+#store:active{
+    background-color: mediumseagreen;
+}
+#ranbtn:active{
+    background-color: orange;
+}
+#showcontents{
+    height: 60px;
+    text-align: left;
+    margin-left: 43%;
+    font-size: 15px;
+    font-weight: bold;
+}
+.admin{text-align: center;}
+.admin > button{
+    height: 30px;
+    margin-top: 30px;
+    border-radius: 7px 7px 7px 7px;
+}
+#id, #pwd{
+    text-align: right;
+    margin-right: 46%;
+    display: none;
+}
+#login{
+    position: relative;
+    margin-top: 10px;
+    border-radius: 7px 7px 7px 7px;
+    color: black;
+    background-color: lightblue;
+}
+#adbtn{
+    background-color: deepskyblue;
+    color: white;
+    font-weight: bold;
+    border: 2px solid turquoise;
+}

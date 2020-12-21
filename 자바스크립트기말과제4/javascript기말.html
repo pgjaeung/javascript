@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="jquery-3.5.1.js"></script>
+    <script src="script.js"></script>
+    <title>자바 기말과제</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<script>     
+    $(document).ready(function(){
+        //==============================================================
+        $("#ranbtn").click(function(){
+            var phone = "";
+            var ranamount = Math.random() * 100000;
+            var rantest1 = Math.floor(ranamount/1000)*1000 + 1000;          // 난수 1000단위 절사
+            var ran = rantest1.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");        // 난수 자릿수 3마다 ,
+            $("#ran").val(ran);
+        });
+        //==============================================================
+        $('.key').click(function(){
+            var num = $(this).text();
+            var a1 = $("#numBox").val();
+            $("#numBox").val(a1 +num);
+        //=======================================휴대폰번호 양식맞게
+            if(a1.length>12){
+                $("#numBox").val("초기화버튼(C)클릭!");
+                alert("휴대번호 양식이 아닙니다!");
+            }
+        //==============================================================자동 하이픈
+            if(a1.length === 3){
+                $("#numBox").val(a1 + "-"+num);
+            }else if(a1.length === 8){
+                $("#numBox").val(a1 + "-"+num);
+            }
+        //============================================================
+        });
+        //=======================================================================초기화
+        $('.keyc').click(function(){
+            $("#numBox").val("");
+        });
+        //=====================================================================하이픈이면 하이픈 앞 문자까지 삭제
+        $('.keyx').click(function(){
+            var a1 = $("#numBox").val();        //하이픈 앞문자삭제
+            var undo = a1.slice(0,-1);
+            var undo2 = a1.slice(0,-2);
+            if(a1.length === 4){
+                $("#numBox").val(undo2);
+            }else if(a1.length === 9){
+                $("#numBox").val(undo2);
+            }
+            else $("#numBox").val(undo);
+        });
+        //==============================================================사용자에게 표시
+        $("#store").click(function(){
+            var c1 = $("#ran").val();
+            var c2 = $("#numBox").val();
+            var d1 = new Date();
+            var d2 = d1.toLocaleString();
+            var n1 = parseInt(c1.replace(",",""));
+            var m1 = parseInt(localStorage.getItem(c2));
+            var sum = parseInt(m1+n1);
+            if(localStorage.getItem(c2)===null){
+                localStorage.setItem(c2,parseInt(c1.replace(",","")));
+                
+            }
+            else{
+                localStorage.setItem(c2,sum);
+            }
+            $("#showcontents").html("전화번호 : "+ c2 +"<br>"+ "날짜 : "+d2+"<br>"+"(누적)금액 : "+localStorage.getItem(c2).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")+"원");
+            // document.getElementById("win").innerHTML = localStorage.getItem(c2);
+            alert("저장되었습니다!");
+            $("#ran").val("");
+            $("#numBox").val("");
+            $("#keypad").hide();
+        });
+        //==============================================================로그인 조건
+        $("#login").click(function(){
+            if($("#id_i").val() === "root"){
+                if($("#pwd_i").val() === "jaeung"){
+                    alert("로그인 성공!");
+                    location.href="admin.html";
+                    $("#id").val("");
+                    $("#pwd").val("");
+                }
+                else{
+                    alert("비밀번호가 틀렸습니다!");
+                    $("#id").val("");
+                    $("#pwd").val("");
+                }
+            }
+            else{
+                alert("아이디가 틀렸습니다!");
+                $("#id").val("");
+                $("#pwd").val("");
+            }
+        });
+        //==============================================================
+    });
+    
+</script>
+<body>
+
+    <label for="amount_L" style="text-align: center;">마일리지 적립시스템</label>
+    <hr>
+    <div class="show">
+        <p id="showcontents">저장을 누르면 정보가 표시됩니다.</p>
+    </div>
+    <hr>
+    <div class="amount">
+        <span class="currency">\</span>
+        <input type="text" id="ran" placeholder="금액설정버튼 클릭!" readonly="true">
+        <button id="ranbtn">금액설정</button>
+    </div>
+    <!-- 여기서부터 휴대폰번호 및 키패드 -->
+    <div class="numbericInput">
+        <span class="telephone">☏</span>
+        <input type="text" id="numBox" placeholder="휴대폰 번호 입력!" readonly="true">
+        <button id="store">저장</button>
+        <table id="keypad">
+            <tr>
+                <td class="key" >1</td>
+                <td class="key" >2</td>
+                <td class="key" >3</td>
+            </tr>
+            <tr>
+                <td class="key" >4</td>
+                <td class="key" >5</td>
+                <td class="key" >6</td>
+            </tr>
+            <tr>
+                <td class="key" >7</td>
+                <td class="key" >8</td>
+                <td class="key" >9</td>
+            </tr>
+            <tr>
+                <td class="keyx" onclick="substr(this)">X</td>
+                <td class="key">0</td>
+                <td class="keyc">C</td>
+            </tr>
+        </table>
+    </div>
+    <hr style="margin-top: 50px;">
+    <div class="admin">
+        <button id="adbtn">관리자 로그인</button><br>
+        <p id="id">ID : <span><input type="text" id="id_i"></span><br>
+        <p id="pwd">PWD : <span><input type="password" id="pwd_i"></span><br>
+        <button id="login">로그인</button>
+    </div>
+    <p style="text-align: right;">202039529 이재웅</p>
+</body>
+</html>
