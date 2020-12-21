@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style1.css">
+    <script src="jquery-3.5.1.js"></script>
+    <title>관리자 화면</title>
+    <script>
+//===========================================================================================================================================
+//테이블에 addrow동작
+        function addRow(){
+            for(let i = 0; i<localStorage.length; i++){
+                let key = localStorage.key(i);
+                var tbody = document.getElementById("contentbody");
+                var row = tbody.insertRow( tbody.rows.length );
+                var cell1 = row.insertCell(0);
+                var cell2 = row.insertCell(1);
+                cell1.innerHTML= `${key}`;
+                cell2.innerHTML= `${localStorage.getItem(key).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")+"원"}`;
+            }
+        }
+//===========================================================================================================================================
+        var speed = 500;
+        function flash1(){
+            var crosstable=document.getElementById? document.getElementById("back") : document.all? document.all.myexample : "" 
+            if (crosstable){ 
+                if (crosstable.style.backgroundColor.indexOf("aqua")!=-1) 
+                crosstable.style.backgroundColor="lightskyblue" 
+            else 
+                crosstable.style.backgroundColor="aqua" 
+            } 
+        } 
+//===========================================================================================================================================
+//버튼 깜박이게 설정하는거
+        function flash2(){
+            var crosstable=document.getElementById? document.getElementById("removeall") : document.all? document.all.myexample : "" 
+            if (crosstable){ 
+                if (crosstable.style.backgroundColor.indexOf("pink")!=-1) 
+                crosstable.style.backgroundColor="lightcoral" 
+            else 
+                crosstable.style.backgroundColor="pink" 
+            } 
+        } 
+        setInterval("flash1()", speed);
+        setInterval("flash2()", speed);
+//===========================================================================================================================================
+        $(document).ready(function(){
+            //바로 밑 코드는 id가 b라는 버튼 누르면 사라지게 동작함
+            // $("#b").click(function(){
+            //     $("#b").hide();
+            // });
+            //=========================================================
+            //삭제
+            $("#drop_b").click(function(){
+                var l1 = $("#drop_t").val();
+                if(localStorage.getItem(l1)!==null){
+                    localStorage.removeItem(l1);
+                    alert("삭제되었습니다.");
+                    location.reload(); //삭제를 성공하면 새로고침 자동으로 해줌
+                }
+                else {
+                    alert("잘못된 번호입니다.");
+                }
+            });
+            //=========================================================
+            //기존 페이지로 돌아가는 버튼 동작
+            $("#back").click(function(){
+                location.href="javascript기말.html";
+            });
+            //=========================================================
+            //초기화
+            $("#removeall").click(function(){
+                if(confirm("정말 초기화 할까요 ?")==true){
+                    alert("정상 처리되었습니다.");
+                    localStorage.clear();
+                    location.reload();
+                }
+                else
+                return;
+            })
+        });
+    </script>
+</head>
+<body>
+    <h1>관리자 화면</h1>
+    <hr>
+    <button id="b" onclick='addRow()'>저장된 값들 불러오기</button>
+    <table>
+        <thead>
+            <th>번호</th>
+            <th>금액</th>
+        </thead>
+        <tbody id="contentbody">
+        </tbody>
+    </table>
+    <div class="drop">
+        <input type="text" id="drop_t" placeholder="삭제할 전화번호 입력!" maxlength="13">
+        <button id="drop_b">삭제</button>
+    </div>
+    <div class="btn">
+        <button id="back">돌아가기</button>
+        <button id="removeall">전체초기화</button>
+    </div>
+</body>
+</html>
